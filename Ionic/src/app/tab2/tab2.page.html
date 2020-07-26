@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title>
+            Récap
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">Récap</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <!--     <app-explore-container name="Tab 2 page"></app-explore-container>-->
+
+    <!-- <ion-searchbar animated showCancelButton="always" placeholder="client"></ion-searchbar> -->
+    <!-- Source : https://ionicframework.com/docs/api/searchbar -->
+
+
+    <table class="table table-striped table-hover table-bordered ">
+        <thead class=" table-sm">
+            <tr>
+                <th scope="col">Client</th>
+                <th scope="col">Date </th>
+                <th scope="col">Durée </th>
+                <th scope="col">Type de prestation</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let cons of consultation">
+            <tr>
+                <td>{{ cons.cli_nom}} {{ cons.cli_prenom }}</td>
+                <td>{{ cons.date_consult }}</td>
+                <td>{{ cons.duree_consult }}</td>
+                <td>{{ cons.lib }}</td>
+                <!--<td *ngIf="cons.totalDuree==0"></td>
+                <td *ngIf="cons.totalDuree!=0">{{ cons.totalDuree }}</td> -->
+            </tr>
+        </tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>{{total}}</td>
+            <td>Total</td>
+        </tr>
+    </table>
+
+</ion-content>
