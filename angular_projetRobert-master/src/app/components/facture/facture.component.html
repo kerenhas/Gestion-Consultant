@@ -1,0 +1,101 @@
+<div class="row my-4">
+    <div class="col-md-6">
+        <h3>Facturer consultation</h3>
+    </div>
+    <!-- <div class="col-md-6 text-right">
+        <button class="btn btn-dark btn-sm">
+            <i class="fa fa-plus"></i> Nouvelle Consultation
+        </button>
+    </div>-->
+</div>
+
+
+<form #searchForm="ngForm" (ngSubmit)="onFormSubmit(searchForm)">
+    <div class="card bg-light">
+        <div class="card-header">
+            Rechercher une client
+        </div>
+        <div class="card-body">
+            <!-- <h5 class="card-title">Special title treatment</h5> -->
+            <p class="card-text">Cette page permet de facturer consultation(s) pour un client </p>
+
+
+            <div class="form-group">
+                <select id="ddl" ngModel name="Facturation" class="selectpicker dropdown btn form-control " (change)="onChange()" style="background-color: white; border: 1px solid black;">
+                        <optgroup label="Client ">
+                            <option *ngFor="let cli of client" value="{{cli.id_cli}}">{{cli.nom}} {{cli.prenom}}
+                            </option>
+                        </optgroup>
+            </select>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" (click)="resetSearchForm(searchForm)" class="btn btn-success btn-block " id="btnRech">
+        Rechercher <i class="fa fa-search "></i> 
+    </button>
+
+</form>
+
+<!-- informations sur le client -->
+<div *ngIf="facture.length > 0">
+    <div class="mt-3">
+        <li value="nom_cli"><strong>Nom </strong>: {{ nom_cli }}</li>
+        <li value="adresse_cli"><strong>Adresse </strong>: {{ adresse_cli }}</li>
+        <li value="mail_cli"><strong>Mail </strong>: {{ mail_cli }}</li>
+    </div>
+
+    <!-- Liste des consultations non facturé -->
+    <table class="table table-hover table-bordered table-striped mt-2" id="pdfTable" #pdfTable>
+        <thead class=" table-sm">
+            <tr>
+                <th scope="col"># Consultation</th>
+                <th scope="col">Consultant</th>
+                <th scope="col">Prix unitaite</th>
+                <th scope="col">Durée</th>
+                <th scope="col">Date</th>
+                <th scope="col">Prix Totale</th>
+                <th scope="col">Type prestation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let fact of facture">
+                <th scope="row">{{ fact.id_cons }}</th>
+                <td>{{ fact.nom }} {{ fact.prenom }}</td>
+                <td>{{ fact.prix }}</td>
+                <td>{{ fact.duree }}</td>
+                <td>{{ fact.date }}</td>
+                <td>{{ fact.duree * fact.prix }} </td>
+                <td>{{ fact.lib }}</td>
+            </tr>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col">Total HT</th>
+                <th scope="col">TVA</th>
+                <th scope="col">Total TTC</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{ totalHT }}</td>
+                <td>20 %</td>
+                <th scope="row">{{ totalTTC }}</th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- <button (click)="downloadPDF()" class="btn btn-dark btn-outline">
+    <i class="fa fa-download"></i> Telecharger
+</button> -->
+
+
+<div class="float-right">
+    <button type="button" (click)="downloadPDF()" (click)="clickEvent()" class="btn btn-dark btn-outline">
+    <i class="fa fa-check"></i> Facturer </button>
+</div>

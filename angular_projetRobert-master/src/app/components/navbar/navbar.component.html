@@ -1,0 +1,17 @@
+<div class="app">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <a class="navbar-brand" routerLink="/">{{ title }}</a>
+                <li class="nav-item active"><a class="nav-link" routerLink="/RapportFeuille/Search">Rapport Feuille d'heure</a></li>
+                <li class="nav-item active"><a class="nav-link" routerLink="/Facture">Facture</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <router-outlet></router-outlet>
+        </div>
+    </main>
+
+</div>
